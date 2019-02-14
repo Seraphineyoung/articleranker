@@ -10,6 +10,7 @@ import Ranking from "./Ranking";
 import "./App.css";
 
 const myArray = [data1, data2, data3, data4, data5];
+console.log(myArray.length);
 
 class App extends Component {
   constructor() {
@@ -40,21 +41,9 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="container">
-        <div>
-          <Myarticle
-            passArraylist={myArray}
-            article={myArray[this.state.articleIndex]}
-          />
-        </div>
-
-        <div>
-          <Navigation
-            handleClick={this.handleClick}
-            backwardClick={this.backwardClick}
-          />
-        </div>
+    console.log(this.state.articleIndex, "this is my state");
+    if (this.state.articleIndex === myArray.length) {
+      return (
         <div>
           <Ranking
             mydata1={data1}
@@ -64,13 +53,29 @@ class App extends Component {
             mydata5={data5}
           />
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="container">
+          <div>
+            <Myarticle
+              passArraylist={myArray}
+              article={myArray[this.state.articleIndex]}
+            />
+          </div>
+
+          <div>
+            <Navigation
+              handleClick={this.handleClick}
+              backwardClick={this.backwardClick}
+            />
+          </div>
+        </div>
+      );
+    }
   }
 }
 export default App;
 
-// backwardClick = { this.backwardClick }
 {
-  /* <Myarticle article={this.state.article} */
 }
