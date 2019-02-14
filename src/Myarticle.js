@@ -7,29 +7,10 @@ import React, { Component } from "react";
 import "./article.css";
 
 class Myarticle extends Component {
-  // constructor() {
-  //   super();
-
-  // this.state = {
-  //   article: {}
-  // };
-
-  // this.handleClick = this.handleClick.bind(this);
-  // }
-
-  // componentDidMount() {
-  //   console.log("inside handleclick");
-  //   fetch("./data.json/article-1.json")
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       this.setState({
-  //         article: data
-  //       });
-  //     });
-  // }
-
   render() {
     const data1 = this.props.article;
+    console.log(this.props.article);
+
     return (
       <div>
         <div className="article_container">
@@ -57,3 +38,23 @@ class Myarticle extends Component {
 }
 
 export default Myarticle;
+
+// constructor() {
+//   super();
+
+// this.state = {
+//   article: {}
+// };
+
+// this.handleClick = this.handleClick.bind(this);
+// }
+// componentDidMount() {
+//   console.log("inside handleclick");
+//   fetch("./data.json/article-1.json")
+//     .then(response => response.json())
+//     .then(data => {
+//       this.setState({
+//         article: data
+//       });
+//     });
+// }

@@ -11,59 +11,57 @@ import "./App.css";
 
 const myArray = [data1, data2, data3, data4, data5];
 
-console.log("seraphine", [myArray[0] + 1]);
-let a = 0;
-
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      article: myArray[0]
+      articleIndex: 0
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.backwardClick = this.backwardClick.bind(this);
   }
 
-  // if(a === myArray.length){
-  // return <div>
-  //   <Ranking
-  //     mydata1={data1}
-  //     mydata2={data2}
-  //     mydata3={data3}
-  //     mydata4={data4}
-  //     mydata5={data5}
-  //   />
-  // </div>
-  // }
-
   handleClick() {
-    a = a + 1;
-    console.log("handClick");
-    this.setState({
-      article: myArray[0 + a]
+    this.setState(prevState => {
+      return {
+        articleIndex: prevState.articleIndex + 1
+      };
     });
-    console.log("testing", a);
   }
 
   backwardClick() {
     console.log("backwardClick");
-    this.setState({
-      article: myArray[a - 1]
+    this.setState(prevState => {
+      return {
+        articleIndex: prevState.articleIndex - 1
+      };
     });
-    console.log("back", a);
   }
 
   render() {
     return (
       <div className="container">
         <div>
-          <Myarticle article={this.state.article} />
+          <Myarticle
+            passArraylist={myArray}
+            article={myArray[this.state.articleIndex]}
+          />
         </div>
+
         <div>
           <Navigation
             handleClick={this.handleClick}
             backwardClick={this.backwardClick}
+          />
+        </div>
+        <div>
+          <Ranking
+            mydata1={data1}
+            mydata2={data2}
+            mydata3={data3}
+            mydata4={data4}
+            mydata5={data5}
           />
         </div>
       </div>
@@ -73,3 +71,6 @@ class App extends Component {
 export default App;
 
 // backwardClick = { this.backwardClick }
+{
+  /* <Myarticle article={this.state.article} */
+}
