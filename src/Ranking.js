@@ -10,6 +10,13 @@ const h1_Style = {
   marginTop: "1rem "
 };
 
+const mybtn = {
+  fontSize: "1.5rem",
+  marginBottom: "3rem",
+  backgroundColor: "#c3e6cb",
+  color: "black"
+};
+
 class Ranking extends Component {
   render() {
     const myArray = [
@@ -57,7 +64,7 @@ class Ranking extends Component {
             </div>
           );
         })}
-        <Button variant="secondary" size="lg" block>
+        <Button style={mybtn} variant="secondary" size="lg" block>
           Submit Ranking
         </Button>
       </Container>
