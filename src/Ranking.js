@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { Card, Button, Container } from "react-bootstrap";
 import "./ranking.css";
+
+const h1_Style = {
+  fontSize: "2rem",
+  textAlign: "center",
+  color: "white",
+  marginTop: "1rem "
+};
 
 class Ranking extends Component {
   render() {
@@ -15,34 +22,45 @@ class Ranking extends Component {
     // console.log(myArray);
 
     return (
-      <div className="rank_border">
-        <h1>Please Rank Your articles by clicking the Heart Icon</h1>
+      <Container>
+        <h1 style={h1_Style}>Rank Your articles by clicking the Heart Icon</h1>
 
         {this.props.articles.map((article, index) => {
           const mystate = myArray[index];
           return (
             <div>
               <div className="rank_title">
-                <h1 key={index}>{article.title}</h1>
-                <div>
-                  <button onClick={() => this.props.addLikes(index)}>
-                    <FontAwesomeIcon icon="heart" className="heart" />
-                  </button>
+                <Card key={index} body>
+                  {article.title}
+                  <div className="increment">
+                    <Button
+                      variant="outline-light"
+                      onClick={() => this.props.addLikes(index)}
+                    >
+                      <FontAwesomeIcon icon="heart" className="heart" />
+                    </Button>
 
-                  <p>{mystate}</p>
+                    <p className="counter">{mystate}</p>
 
-                  <button onClick={() => this.props.subtractLikes(index)}>
-                    <FontAwesomeIcon
-                      icon="heart-broken"
-                      className="heartbroken"
-                    />
-                  </button>
-                </div>
+                    <Button
+                      variant="outline-light"
+                      onClick={() => this.props.subtractLikes(index)}
+                    >
+                      <FontAwesomeIcon
+                        icon="heart-broken"
+                        className="heartbroken"
+                      />
+                    </Button>
+                  </div>
+                </Card>
               </div>
             </div>
           );
         })}
-      </div>
+        <Button variant="secondary" size="lg" block>
+          Submit Ranking
+        </Button>
+      </Container>
     );
   }
 }
