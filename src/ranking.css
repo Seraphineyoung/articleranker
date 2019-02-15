@@ -12,7 +12,15 @@
   text-align: center;
 }
 
-.fa-heart {
+button {
+  margin: 10px;
+}
+
+.heart {
   color: red;
+  font-size: 2rem;
+}
+
+.heartbroken {
   font-size: 2rem;
 }

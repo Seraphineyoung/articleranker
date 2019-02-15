@@ -1,4 +1,4 @@
-.article_btn {
+.nav_btn {
   background-color: #4caf50;
   color: white;
   padding: 15px 32px;
@@ -6,6 +6,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  cursor: pointer;
 }
 .button_move {
   display: flex;

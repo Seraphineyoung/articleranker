@@ -1,81 +1,211 @@
 import React, { Component } from "react";
-import Myarticle from "./Myarticle";
-import data1 from "./data.json/article-1.json";
-import data2 from "./data.json/article-2.json";
-import data3 from "./data.json/article-3.json";
-import data4 from "./data.json/article-4.json";
-import data5 from "./data.json/article-5.json";
-import Navigation from "./Navigation";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faHeart, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
+import ArticleShower from "./ArticleShower";
 import Ranking from "./Ranking";
 import "./App.css";
 
-const myArray = [data1, data2, data3, data4, data5];
-console.log(myArray.length);
+library.add(fab, faHeart, faHeartBroken);
+
+const urls = [
+  "http://www.mocky.io/v2/5c6573f93300003b1db99de1",
+  "http://www.mocky.io/v2/5c6574b33300009010b99de4",
+  "http://www.mocky.io/v2/5c657510330000640eb99de5",
+  "http://www.mocky.io/v2/5c65754b330000b212b99de6",
+  "http://www.mocky.io/v2/5c6575663300008a12b99de8"
+];
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      articleIndex: 0
+      articles: [],
+      articleIndex: -1,
+      like0: 0,
+      like1: 0,
+      like2: 0,
+      like3: 0,
+      like4: 0
     };
 
-    this.handleClick = this.handleClick.bind(this);
-    this.backwardClick = this.backwardClick.bind(this);
+    this.addLikes = this.addLikes.bind(this);
+    this.subtractLikes = this.subtractLikes.bind(this);
   }
 
-  handleClick() {
-    this.setState(prevState => {
-      return {
+  addLikes(index) {
+    console.log("myinde", index);
+    if (index === 0) {
+      this.setState(prevState => {
+        return {
+          like0: prevState.like0 + 1
+        };
+      });
+    } else if (index === 1) {
+      {
+        this.setState(prevState => {
+          return {
+            like1: prevState.like1 + 1
+          };
+        });
+      }
+    } else if (index === 2) {
+      {
+        this.setState(prevState => {
+          return {
+            like2: prevState.like2 + 1
+          };
+        });
+      }
+    } else if (index === 3) {
+      {
+        this.setState(prevState => {
+          return {
+            like3: prevState.like3 + 1
+          };
+        });
+      }
+    } else if (index === 4) {
+      {
+        this.setState(prevState => {
+          return {
+            like4: prevState.like4 + 1
+          };
+        });
+      }
+    }
+  }
+
+  subtractLikes(index) {
+    console.log("myinde", index);
+    if (index === 0) {
+      this.setState(prevState => {
+        return {
+          like0: prevState.like0 - 1
+        };
+      });
+    } else if (index === 1) {
+      {
+        this.setState(prevState => {
+          return {
+            like1: prevState.like1 - 1
+          };
+        });
+      }
+    } else if (index === 2) {
+      {
+        this.setState(prevState => {
+          return {
+            like2: prevState.like2 - 1
+          };
+        });
+      }
+    } else if (index === 3) {
+      {
+        this.setState(prevState => {
+          return {
+            like3: prevState.like3 - 1
+          };
+        });
+      }
+    } else if (index === 4) {
+      {
+        this.setState(prevState => {
+          return {
+            like4: prevState.like4 - 1
+          };
+        });
+      }
+    }
+  }
+
+  loadNextArticle = () => {
+    //checking if we already have the article at next articleIndex and we have a url to load it from
+    if (
+      this.state.articles[this.state.articleIndex + 1] === undefined &&
+      urls.length > this.state.articleIndex
+    ) {
+      // then fetch the json file
+      // the first time the index of the urls will be zero
+      fetch(urls[this.state.articleIndex + 1])
+        .then(response => response.json())
+        .then(article => {
+          this.setState(prevState => ({
+            //this is creating a new array with all the items from the old and appending a new article
+            articles: [...prevState.articles, article],
+            articleIndex: prevState.articleIndex + 1
+          }));
+        });
+    } else {
+      // We already have the article or weve reached the end of uRLS list, just increment articleIndex
+      this.setState(prevState => ({
         articleIndex: prevState.articleIndex + 1
-      };
-    });
-  }
+      }));
+    }
+  };
 
-  backwardClick() {
-    console.log("backwardClick");
-    this.setState(prevState => {
-      return {
-        articleIndex: prevState.articleIndex - 1
-      };
-    });
+  loadPrevArticle = () => {
+    if (this.state.articleIndex > -1) {
+      this.setState(prevState => {
+        return {
+          articleIndex: prevState.articleIndex - 1
+        };
+      });
+    } else {
+      alert("You are at the first article");
+    }
+  };
+
+  componentDidMount() {
+    this.loadNextArticle();
   }
 
   render() {
-    console.log(this.state.articleIndex, "this is my state");
-    if (this.state.articleIndex === myArray.length) {
+    if (this.state.articles.length === 0) {
+      return <p>Article is Loading</p>;
+    } else if (urls.length - 1 === this.state.articleIndex) {
       return (
         <div>
-          <Ranking
-            mydata1={data1}
-            mydata2={data2}
-            mydata3={data3}
-            mydata4={data4}
-            mydata5={data5}
-          />
+          {
+            <Ranking
+              articles={this.state.articles}
+              like0={this.state.like0}
+              like1={this.state.like1}
+              like2={this.state.like2}
+              like3={this.state.like3}
+              like4={this.state.like4}
+              addLikes={this.addLikes}
+              subtractLikes={this.subtractLikes}
+            />
+          }
         </div>
       );
     } else {
       return (
-        <div className="container">
-          <div>
-            <Myarticle
-              passArraylist={myArray}
-              article={myArray[this.state.articleIndex]}
+        <div>
+          {
+            <ArticleShower
+              article={this.state.articles[this.state.articleIndex]}
+              loadNextArticle={this.loadNextArticle}
+              loadPrevArticle={this.loadPrevArticle}
             />
-          </div>
-
-          <div>
-            <Navigation
-              handleClick={this.handleClick}
-              backwardClick={this.backwardClick}
-            />
-          </div>
+          }
+          {/* <Ranking
+            articles={this.state.articles}
+            like0={this.state.like0}
+            like1={this.state.like1}
+            like2={this.state.like2}
+            like3={this.state.like3}
+            like4={this.state.like4}
+            addLikes={this.addLikes}
+            subtractLikes={this.subtractLikes}
+          /> */}
+          ;
         </div>
       );
     }
   }
 }
-export default App;
 
-{
-}
+export default App;

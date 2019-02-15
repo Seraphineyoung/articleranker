@@ -6,18 +6,18 @@ import React, { Component } from "react";
 // import data5 from "./data.json/article-5.json";
 import "./article.css";
 
-class Myarticle extends Component {
+class MyArticle extends Component {
   render() {
-    const data1 = this.props.article;
+    // const data1 = this.props.article;
     console.log(this.props.article);
 
     return (
       <div>
         <div className="article_container">
-          <h1>{data1.title}</h1>
+          <h1>{this.props.article.title}</h1>
         </div>
         <div className="article_container">
-          {data1.body.map(body_index => {
+          {this.props.article.body.map(body_index => {
             return (
               <div>
                 <p>{body_index.type}</p>
@@ -37,7 +37,7 @@ class Myarticle extends Component {
   }
 }
 
-export default Myarticle;
+export default MyArticle;
 
 // constructor() {
 //   super();

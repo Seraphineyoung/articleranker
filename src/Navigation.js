@@ -5,10 +5,10 @@ class Navigation extends Component {
   render() {
     return (
       <div className="button_move">
-        <button className="article_btn" onClick={this.props.backwardClick}>
+        <button className="nav_btn" onClick={this.props.backwardClick}>
           BACK
         </button>
-        <button className="article_btn" onClick={this.props.handleClick}>
+        <button className="nav_btn" onClick={this.props.forwardClick}>
           NEXT
         </button>
       </div>
