@@ -82,7 +82,6 @@ class App extends Component {
   }
 
   addLikes(index) {
-    console.log("myindex", index);
     if (index === 0) {
       this.setState(prevState => {
         return {
@@ -125,7 +124,6 @@ class App extends Component {
   }
 
   subtractLikes(index) {
-    console.log("myindex", index);
     if (index === 0) {
       this.setState(prevState => {
         return {
@@ -177,14 +175,24 @@ class App extends Component {
     ) {
       // then fetch the json file
       // the first time the index of the urls will be zero
+
       fetch(urls[this.state.articleIndex + 1])
-        .then(response => response.json())
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Something went wrong");
+          }
+        })
         .then(article => {
           this.setState(prevState => ({
             //this is creating a new array with all the items from the old and appending a new article
             articles: [...prevState.articles, article],
             articleIndex: prevState.articleIndex + 1
           }));
+        })
+        .catch(error => {
+          console.log(error);
         });
     } else {
       // We already have the article or weve reached the end of uRLS list, just increment articleIndex

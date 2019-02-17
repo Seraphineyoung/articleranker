@@ -79,10 +79,3 @@ class Ranking extends Component {
 }
 
 export default Ranking;
-
-{
-  /* {this.props.data.map(function(data, idx) {
-          return <p key={idx}>{data.name}</p>;
-        })}
-        ; */
-}
