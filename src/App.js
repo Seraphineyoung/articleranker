@@ -11,11 +11,11 @@ import "./App.css";
 library.add(fab, faHeart, faHeartBroken);
 
 const urls = [
-  "http://www.mocky.io/v2/5c6573f93300003b1db99de1",
-  "http://www.mocky.io/v2/5c6574b33300009010b99de4",
-  "http://www.mocky.io/v2/5c657510330000640eb99de5",
-  "http://www.mocky.io/v2/5c65754b330000b212b99de6",
-  "http://www.mocky.io/v2/5c6575663300008a12b99de8"
+  "https://www.mocky.io/v2/5c6573f93300003b1db99de1",
+  "https://www.mocky.io/v2/5c6574b33300009010b99de4",
+  "https://www.mocky.io/v2/5c657510330000640eb99de5",
+  "https://www.mocky.io/v2/5c65754b330000b212b99de6",
+  "https://www.mocky.io/v2/5c6575663300008a12b99de8"
 ];
 
 class App extends Component {
