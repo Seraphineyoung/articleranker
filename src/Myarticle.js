@@ -19,13 +19,6 @@ const myCard = {
   marginBottom: "0.5rem"
 };
 
-const container = {
-  backgroundColor: "#4c4c47",
-  height: "100 %",
-  margin: "2rem",
-  padding: "2rem"
-};
-
 class MyArticle extends Component {
   render() {
     return (
