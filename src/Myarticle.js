@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Button, Container, Alert } from "react-bootstrap";
+import { Card, Container, Alert } from "react-bootstrap";
 
 const h1_Style = {
   textAlign: "center",
@@ -19,6 +19,13 @@ const myCard = {
   marginBottom: "0.5rem"
 };
 
+const container = {
+  backgroundColor: "#4c4c47",
+  height: "100 %",
+  margin: "2rem",
+  padding: "2rem"
+};
+
 class MyArticle extends Component {
   render() {
     return (
@@ -30,9 +37,9 @@ class MyArticle extends Component {
             </Card.Header>
           </div>
           <div style={para_wrapper}>
-            {this.props.article.body.map(body_index => {
+            {this.props.article.body.map((body_index, index) => {
               return (
-                <Card style={myCard}>
+                <Card style={myCard} key={index}>
                   <div>
                     <Card.Title style={{ fontSize: "1.5rem" }}>
                       <p>{body_index.type}</p>

@@ -48,12 +48,12 @@ class App extends Component {
       stateVal[3],
       stateVal[4]
     ];
-    console.log(stateKeys);
+    // console.log(stateKeys);
     //sorting the values of the second items in the array.
     const newstateValSort = stateKeys.sort(function(a, b) {
       return b[1] - a[1];
     });
-    console.log(newstateValSort);
+    // console.log(newstateValSort);
     //mapping over the zeroth position of the sorted values and also getting the item at the 4th position of the string e.g "likes4" == getting 4, and coverting into a number
     const numKeyofsortedArr = newstateValSort.map((item, index) => {
       return Number(item[0][4]);

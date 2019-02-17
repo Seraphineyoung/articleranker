@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card, Button, Container } from "react-bootstrap";
-import "./ranking.css";
 
 const h1_Style = {
   fontSize: "2rem",
@@ -14,6 +13,26 @@ const mybtn = {
   fontSize: "1.5rem",
   marginBottom: "3rem",
   backgroundColor: "#c3e6cb",
+  color: "black"
+};
+
+const increment = {
+  display: "flex",
+  justifyContent: "center"
+};
+
+const rank_title = {
+  padding: "10px",
+  textAlign: "center"
+};
+
+const heart = {
+  color: "red",
+  fontSize: "2rem"
+};
+
+const heartbroken = {
+  fontSize: "2rem",
   color: "black"
 };
 
@@ -36,15 +55,15 @@ class Ranking extends Component {
           const mystate = myArray[index];
           return (
             <div key={index}>
-              <div className="rank_title">
+              <div style={rank_title}>
                 <Card key={index} body>
                   {article.title}
-                  <div className="increment">
+                  <div style={increment}>
                     <Button
                       variant="outline-light"
                       onClick={() => this.props.addLikes(index)}
                     >
-                      <FontAwesomeIcon icon="heart" className="heart" />
+                      <FontAwesomeIcon icon="heart" style={heart} />
                     </Button>
 
                     <p style={{ fontSize: "2rem" }}>{mystate}</p>
@@ -55,7 +74,7 @@ class Ranking extends Component {
                     >
                       <FontAwesomeIcon
                         icon="heart-broken"
-                        className="heartbroken"
+                        style={heartbroken}
                       />
                     </Button>
                   </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Button, Container, Alert } from "react-bootstrap";
+import { Card, Container, Alert } from "react-bootstrap";
 
 const h1_Style = {
   fontSize: "4rem",
