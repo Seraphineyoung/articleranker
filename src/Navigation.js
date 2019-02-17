@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import "./navigation.css";
+
 import { Button } from "react-bootstrap";
+
+const button_move = {
+  display: "flex",
+  justifyContent: "space-between"
+};
 
 const nav_btn = {
   padding: "1rem 7rem",
@@ -13,7 +18,7 @@ const nav_btn = {
 class Navigation extends Component {
   render() {
     return (
-      <div className="button_move">
+      <div style={button_move}>
         <Button
           variant="primary"
           size="lg"

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Card, Button, Container, Alert } from "react-bootstrap";
-import "./article.css";
 
 const h1_Style = {
   textAlign: "center",
@@ -22,9 +21,6 @@ const myCard = {
 
 class MyArticle extends Component {
   render() {
-    // const data1 = this.props.article;
-    console.log(this.props.article);
-
     return (
       <Container>
         <Alert variant="success">
@@ -60,23 +56,3 @@ class MyArticle extends Component {
 }
 
 export default MyArticle;
-
-// constructor() {
-//   super();
-
-// this.state = {
-//   article: {}
-// };
-
-// this.handleClick = this.handleClick.bind(this);
-// }
-// componentDidMount() {
-//   console.log("inside handleclick");
-//   fetch("./data.json/article-1.json")
-//     .then(response => response.json())
-//     .then(data => {
-//       this.setState({
-//         article: data
-//       });
-//     });
-// }

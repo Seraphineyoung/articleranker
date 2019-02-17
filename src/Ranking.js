@@ -47,7 +47,7 @@ class Ranking extends Component {
                       <FontAwesomeIcon icon="heart" className="heart" />
                     </Button>
 
-                    <p className="counter">{mystate}</p>
+                    <p>{mystate}</p>
 
                     <Button
                       variant="outline-light"
@@ -64,7 +64,13 @@ class Ranking extends Component {
             </div>
           );
         })}
-        <Button style={mybtn} variant="secondary" size="lg" block>
+        <Button
+          onClick={() => this.props.ShowRankedArticle()}
+          style={mybtn}
+          variant="secondary"
+          size="lg"
+          block
+        >
           Submit Ranking
         </Button>
       </Container>

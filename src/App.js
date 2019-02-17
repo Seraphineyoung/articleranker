@@ -5,6 +5,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faHeart, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
 import ArticleShower from "./ArticleShower";
 import Ranking from "./Ranking";
+import ShowRankedArticle from "./ShowRankedArticle";
 import "./App.css";
 
 library.add(fab, faHeart, faHeartBroken);
@@ -21,21 +22,67 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      articles: [],
-      articleIndex: -1,
       like0: 0,
       like1: 0,
       like2: 0,
       like3: 0,
-      like4: 0
+      like4: 0,
+      articles: [],
+      articleIndex: -1,
+
+      ranked: false
     };
 
     this.addLikes = this.addLikes.bind(this);
     this.subtractLikes = this.subtractLikes.bind(this);
+    this.ShowRankedArticle = this.ShowRankedArticle.bind(this);
+  }
+
+  ShowRankedArticle() {
+    const stateVal = Object.entries(this.state);
+    //getting key and values of items in state, from 1 - 4, which are the likes values
+    const stateKeys = [
+      stateVal[0],
+      stateVal[1],
+      stateVal[2],
+      stateVal[3],
+      stateVal[4]
+    ];
+    console.log(stateKeys);
+    //sorting the values of the second items in the array.
+    const newstateValSort = stateKeys.sort(function(a, b) {
+      return b[1] - a[1];
+    });
+    console.log(newstateValSort);
+    //mapping over the zeroth position of the sorted values and also getting the item at the 4th position of the string e.g "likes4" == getting 4, and coverting into a number
+    const numKeyofsortedArr = newstateValSort.map((item, index) => {
+      return Number(item[0][4]);
+    });
+
+    const currentState = this.state.articles;
+    // console.log(currentState, "mystates");
+    // console.log(numKeyofsortedArr, "sortedarr");
+
+    //let result = [];
+    // currentState.map(article => {
+    //   return result.push(article.title);
+    // }); console.log(result);
+
+    const Arrsorted = numKeyofsortedArr.map(i =>
+      currentState.find(o => currentState.indexOf(o) === i)
+    );
+    // console.log(Arrsorted);
+
+    this.setState(prevState => {
+      return {
+        ranked: (prevState.ranked = true),
+        articles: (prevState.articles = Arrsorted)
+      };
+    });
   }
 
   addLikes(index) {
-    console.log("myinde", index);
+    console.log("myindex", index);
     if (index === 0) {
       this.setState(prevState => {
         return {
@@ -78,7 +125,7 @@ class App extends Component {
   }
 
   subtractLikes(index) {
-    console.log("myinde", index);
+    console.log("myindex", index);
     if (index === 0) {
       this.setState(prevState => {
         return {
@@ -162,6 +209,21 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.ranked === true) {
+      return (
+        <div>
+          <ShowRankedArticle
+            articles={this.state.articles}
+            like0={this.state.like0}
+            like1={this.state.like1}
+            like2={this.state.like2}
+            like3={this.state.like3}
+            like4={this.state.like4}
+          />
+        </div>
+      );
+    }
+
     if (this.state.articles.length === 0) {
       return <p>Article is Loading</p>;
     } else if (urls.length - 1 === this.state.articleIndex) {
@@ -177,6 +239,7 @@ class App extends Component {
               like4={this.state.like4}
               addLikes={this.addLikes}
               subtractLikes={this.subtractLikes}
+              ShowRankedArticle={this.ShowRankedArticle}
             />
           }
         </div>
@@ -191,16 +254,6 @@ class App extends Component {
               loadPrevArticle={this.loadPrevArticle}
             />
           }
-          {/* <Ranking
-            articles={this.state.articles}
-            like0={this.state.like0}
-            like1={this.state.like1}
-            like2={this.state.like2}
-            like3={this.state.like3}
-            like4={this.state.like4}
-            addLikes={this.addLikes}
-            subtractLikes={this.subtractLikes}
-          /> */}
           ;
         </div>
       );
