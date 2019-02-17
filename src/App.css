@@ -1,4 +1,6 @@
 .container {
   background-color: #4c4c47;
   height: 100%;
+  margin: 2rem;
+  padding: 2rem;
 }

@@ -2,18 +2,23 @@ import React, { Component } from "react";
 import { Card, Button, Container, Alert } from "react-bootstrap";
 
 const h1_Style = {
-  fontSize: "2rem",
+  fontSize: "4rem",
   textAlign: "center",
-  color: "white",
+  color: "rgb(21, 87, 36)",
   marginTop: "1rem "
 };
 
-const mybtn = {
-  fontSize: "1.5rem",
-  marginBottom: "3rem",
-  backgroundColor: "#c3e6cb",
-  color: "black"
+const para_wrapper = {
+  padding: "0.3rem",
+  fontSize: "1.2rem",
+  textAlign: "center"
 };
+
+const myCard = {
+  marginBottom: "0.5rem"
+};
+
+const article_container = { padding: "0.3rem", fontSize: "1.2rem" };
 
 class ShowRankedArticle extends Component {
   render() {
@@ -32,21 +37,27 @@ class ShowRankedArticle extends Component {
 
     return (
       <Container>
-        <h1 style={h1_Style}> Your Ranked articles </h1>
+        <Alert variant="success">
+          <div style={article_container}>
+            <Card.Header>
+              <h1 style={h1_Style}> Your Ranked articles </h1>
+            </Card.Header>
+          </div>
 
-        {this.props.articles.map((article, index) => {
-          const mystate = newstateValSort[index];
-          return (
-            <div>
-              <div className="rank_title">
-                <Card key={index} body>
-                  {article.title}
-                  <p>{mystate}</p>
-                </Card>
+          {this.props.articles.map((article, index) => {
+            const mystate = newstateValSort[index];
+            return (
+              <div>
+                <div style={para_wrapper}>
+                  <Card style={myCard} key={index} body>
+                    {article.title}
+                    <p>{mystate}</p>
+                  </Card>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </Alert>
       </Container>
     );
   }
