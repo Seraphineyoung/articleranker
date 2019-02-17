@@ -169,9 +169,11 @@ class App extends Component {
 
   loadNextArticle = () => {
     //checking if we already have the article at next articleIndex and we have a url to load it from
+    // console.log(urls.length - 1);
+    // console.log(this.state.articleIndex);
     if (
       this.state.articles[this.state.articleIndex + 1] === undefined &&
-      urls.length > this.state.articleIndex
+      urls.length - 1 > this.state.articleIndex
     ) {
       // then fetch the json file
       // the first time the index of the urls will be zero
@@ -224,9 +226,11 @@ class App extends Component {
       );
     }
 
+    console.log(urls.length - 1);
+    console.log(this.state.articleIndex);
     if (this.state.articles.length === 0) {
       return <p>Article is Loading</p>;
-    } else if (urls.length - 1 === this.state.articleIndex) {
+    } else if (urls.length === this.state.articleIndex) {
       return (
         <div>
           {
