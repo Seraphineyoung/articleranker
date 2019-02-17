@@ -47,7 +47,7 @@ class ShowRankedArticle extends Component {
           {this.props.articles.map((article, index) => {
             const mystate = newstateValSort[index];
             return (
-              <div>
+              <div key={index}>
                 <div style={para_wrapper}>
                   <Card style={myCard} key={index} body>
                     {article.title}

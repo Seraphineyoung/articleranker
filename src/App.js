@@ -62,16 +62,9 @@ class App extends Component {
     const currentState = this.state.articles;
     // console.log(currentState, "mystates");
     // console.log(numKeyofsortedArr, "sortedarr");
-
-    //let result = [];
-    // currentState.map(article => {
-    //   return result.push(article.title);
-    // }); console.log(result);
-
     const Arrsorted = numKeyofsortedArr.map(i =>
       currentState.find(o => currentState.indexOf(o) === i)
     );
-    // console.log(Arrsorted);
 
     this.setState(prevState => {
       return {
@@ -82,91 +75,84 @@ class App extends Component {
   }
 
   addLikes(index) {
-    if (index === 0) {
-      this.setState(prevState => {
-        return {
-          like0: prevState.like0 + 1
-        };
-      });
-    } else if (index === 1) {
-      {
+    switch (index) {
+      case 0:
+        this.setState(prevState => {
+          return {
+            like0: prevState.like0 + 1
+          };
+        });
+        break;
+      case 1:
         this.setState(prevState => {
           return {
             like1: prevState.like1 + 1
           };
         });
-      }
-    } else if (index === 2) {
-      {
+        break;
+      case 2:
         this.setState(prevState => {
           return {
             like2: prevState.like2 + 1
           };
         });
-      }
-    } else if (index === 3) {
-      {
+        break;
+      case 3:
         this.setState(prevState => {
           return {
             like3: prevState.like3 + 1
           };
         });
-      }
-    } else if (index === 4) {
-      {
+        break;
+      case 4:
         this.setState(prevState => {
           return {
             like4: prevState.like4 + 1
           };
         });
-      }
     }
   }
 
   subtractLikes(index) {
-    if (index === 0) {
-      this.setState(prevState => {
-        return {
-          like0: prevState.like0 - 1
-        };
-      });
-    } else if (index === 1) {
-      {
+    switch (index) {
+      case 0:
+        this.setState(prevState => {
+          return {
+            like0: prevState.like0 - 1
+          };
+        });
+        break;
+      case 1:
         this.setState(prevState => {
           return {
             like1: prevState.like1 - 1
           };
         });
-      }
-    } else if (index === 2) {
-      {
+        break;
+      case 2:
         this.setState(prevState => {
           return {
             like2: prevState.like2 - 1
           };
         });
-      }
-    } else if (index === 3) {
-      {
+        break;
+      case 3:
         this.setState(prevState => {
           return {
             like3: prevState.like3 - 1
           };
         });
-      }
-    } else if (index === 4) {
-      {
+        break;
+      case 4:
         this.setState(prevState => {
           return {
             like4: prevState.like4 - 1
           };
         });
-      }
     }
   }
-
   loadNextArticle = () => {
-    //checking if we already have the article at next articleIndex and we have a url to load it from
+    //checking if i already have the article at next articleIndex and i have a url to load it from
     // console.log(urls.length - 1);
     // console.log(this.state.articleIndex);
     if (
@@ -195,7 +181,7 @@ class App extends Component {
           console.log(error);
         });
     } else {
-      // We already have the article or weve reached the end of uRLS list, just increment articleIndex
+      // We already have the article or we've reached the end of URLS list, just increment articleIndex
       this.setState(prevState => ({
         articleIndex: prevState.articleIndex + 1
       }));
@@ -234,8 +220,8 @@ class App extends Component {
       );
     }
 
-    console.log(urls.length - 1);
-    console.log(this.state.articleIndex);
+    // console.log(urls.length - 1);
+    // console.log(this.state.articleIndex);
     if (this.state.articles.length === 0) {
       return <p>Article is Loading</p>;
     } else if (urls.length === this.state.articleIndex) {

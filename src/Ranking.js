@@ -35,7 +35,7 @@ class Ranking extends Component {
         {this.props.articles.map((article, index) => {
           const mystate = myArray[index];
           return (
-            <div>
+            <div key={index}>
               <div className="rank_title">
                 <Card key={index} body>
                   {article.title}
@@ -47,7 +47,7 @@ class Ranking extends Component {
                       <FontAwesomeIcon icon="heart" className="heart" />
                     </Button>
 
-                    <p>{mystate}</p>
+                    <p style={{ fontSize: "2rem" }}>{mystate}</p>
 
                     <Button
                       variant="outline-light"
