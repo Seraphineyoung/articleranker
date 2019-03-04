@@ -35,7 +35,7 @@ class MyArticle extends Component {
                 <Card style={myCard} key={index}>
                   <div>
                     <Card.Title style={{ fontSize: "1.5rem" }}>
-                      <p>{body_index.type}</p>
+                      {<h1>{body_index.type}</h1>}
                     </Card.Title>
                     <p>{body_index.model.text}</p>
                     <img
