@@ -38,14 +38,17 @@ class App extends Component {
   }
 
   ShowRankedArticle() {
-    const stateVal = Object.entries(this.state);
+    //likesForArticle to be renamed- likesForArticle
+    const likesForArticle = Object.entries(this.state);
+
+    console.log(likesForArticle);
     //getting key and values of items in state, from 1 - 4, which are the likes values
     const stateKeys = [
-      stateVal[0],
-      stateVal[1],
-      stateVal[2],
-      stateVal[3],
-      stateVal[4]
+      likesForArticle[0],
+      likesForArticle[1],
+      likesForArticle[2],
+      likesForArticle[3],
+      likesForArticle[4]
     ];
     // console.log(stateKeys);
     //sorting the values of the second items in the array.
@@ -72,6 +75,13 @@ class App extends Component {
       };
     });
   }
+
+  // updateLikesForArticle(selectedArticleNumber, articleLikes) {
+  //   let likeIdentifier = "like" + selectedArticleNumber;
+  //   return {
+  //     [likeIdentifier]: prevState[likeIdentifier] + 1
+  //   };
+  // }
 
   addLikes(index) {
     switch (index) {

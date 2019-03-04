@@ -38,10 +38,14 @@ class MyArticle extends Component {
                       <p>{body_index.type}</p>
                     </Card.Title>
                     <p>{body_index.model.text}</p>
-                    <p>{body_index.model.url}</p>
-                    <p>{body_index.model.altText}</p>
-                    <p>{body_index.model.height}</p>
-                    <p>{body_index.model.width}</p>
+                    <img
+                      src={body_index.model.url}
+                      alt={body_index.model.altText}
+                      style={{
+                        width: body_index.model.width,
+                        height: body_index.model.height
+                      }}
+                    />
                     <p>{body_index.model.type}</p>
                     <p>{body_index.model.items}</p>
                   </div>
