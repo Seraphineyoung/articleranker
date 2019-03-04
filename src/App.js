@@ -14,7 +14,7 @@ const urls = [
   "https://www.mocky.io/v2/5c6574b33300009010b99de4",
   "https://www.mocky.io/v2/5c657510330000640eb99de5",
   "https://www.mocky.io/v2/5c65754b330000b212b99de6",
-  "https://www.mocky.io/v2/5c6575663300008a1git 2b99de8"
+  "https://www.mocky.io/v2/5c6575663300008a12b99de8"
 ];
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
     //likesForArticle to be renamed- likesForArticle
     const likesForArticle = Object.entries(this.state);
 
-    console.log(likesForArticle);
+    // console.log(likesForArticle);
     //getting key and values of items in state, from 1 - 4, which are the likes values
     const stateKeys = [
       likesForArticle[0],
@@ -180,6 +180,7 @@ class App extends Component {
           }
         })
         .then(article => {
+          console.log(article);
           this.setState(prevState => ({
             //this is creating a new array with all the items from the old and appending a new article
             articles: [...prevState.articles, article],
@@ -215,6 +216,21 @@ class App extends Component {
 
   render() {
     if (this.state.ranked === true) {
+      // Posting ranked article to a mocked
+      // var data = Object.assign({}, this.state.articles);
+      var url = "http://www.mocky.io/v2/5c7d62e71000005815761033";
+      var data = { myname: "seraphine" };
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+        .then(res => res.json())
+        .then(response => console.log("Success:", JSON.stringify(response)))
+        .catch(error => console.error("Error:", error));
+
       return (
         <div>
           <ShowRankedArticle

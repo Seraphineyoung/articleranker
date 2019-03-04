@@ -33,7 +33,7 @@ class ShowRankedArticle extends Component {
     const newstateValSort = myArray.sort(function(a, b) {
       return b - a;
     });
-    console.log(newstateValSort);
+    // console.log(newstateValSort);
 
     return (
       <Container>
@@ -46,7 +46,7 @@ class ShowRankedArticle extends Component {
 
           {this.props.articles.map((article, index) => {
             const mystate = newstateValSort[index];
-            console.log(mystate);
+            // console.log(article);
             return (
               <div key={index}>
                 <div style={para_wrapper}>
